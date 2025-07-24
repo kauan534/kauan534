@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <title>Sobre o Câncer</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    header {
+      background-color: #a629fa;
+      padding: 30px;
+      text-align: center;
+      font-size: 35px;
+      color: white;
+    }
+    nav {
+      float: left;
+      width: 30%;
+      height: 300px;
+      background: white;
+      padding: 20px;
+    }
+    nav ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    nav ul li a {
+      cursor: pointer;
+      color: #d28fff;
+      text-decoration: none;
+      font-weight: bold;
+      display: block;
+      margin: 10px 0;
+    }
+    nav ul li a:hover {
+      text-decoration: underline;
+    }
+    article {
+      float: left;
+      padding: 20px;
+      width: 70%;
+      background-color: #f1f1f1;
+      height: 300px;
+      overflow-y: auto;
+    }
+    section::after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+    footer {
+      background-color: #d28fff;
+      padding: 10px;
+      text-align: center;
+      color: white;
+      clear: both;
+      margin-top: 20px;
+    }
+    @media (max-width: 600px) {
+      nav,
+      article {
+        width: 100%;
+        height: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h2>Sobre o Câncer</h2>
+  </header>
+
+  <section>
+    <nav>
+      <ul>
+        <li><a onclick="mostrarConteudo('definicao')">O que é câncer</a></li>
+        <li><a onclick="mostrarConteudo('historia')">História real</a></li>
+        <li><a onclick="mostrarConteudo('sintomas')">Sintomas comuns</a></li>
+      </ul>
+    </nav>
+
+    <article id="conteudo">
+      <h1>O que é Câncer?</h1>
+      <p>
+        O câncer é o nome dado a um conjunto de mais de 100 doenças que têm em comum o crescimento desordenado de células que invadem tecidos e órgãos.
+      </p>
+      <p>
+        Esse crescimento descontrolado pode formar tumores e comprometer o funcionamento normal do corpo. O diagnóstico precoce e o tratamento adequado aumentam as chances de cura.
+      </p>
+    </article>
+  </section>
+
+  <footer>
+    <p>Informações gerais - Cuidados com a saúde</p>
+  </footer>
+
+  <script>
+    function mostrarConteudo(tipo) {
+      const artigo = document.getElementById("conteudo");
+      if (tipo === "definicao") {
+        artigo.innerHTML = `
+          <h1>O que é Câncer?</h1>
+          <p>O câncer é o nome dado a um conjunto de mais de 100 doenças que têm em comum o crescimento desordenado de células que invadem tecidos e órgãos.</p>
+          <p>Esse crescimento descontrolado pode formar tumores e comprometer o funcionamento normal do corpo. O diagnóstico precoce e o tratamento adequado aumentam as chances de cura.</p>
+        `;
+      } else if (tipo === "historia") {
+        artigo.innerHTML = `
+         <h1>História Real: Lorena Reginato</h1>
+<p>Lorena Reginato foi diagnosticada com um tumor cerebral aos 12 anos. O diagnóstico mudou completamente sua vida, exigindo força, paciência e muitos tratamentos.</p>
+<p>Ela passou por cirurgias, sessões de quimioterapia e inúmeros atendimentos médicos. Durante esse período, encontrou no apoio da família e na fé a motivação necessária para continuar lutando.</p>
+<p>Mesmo diante de tantos desafios, Lorena decidiu compartilhar sua jornada nas redes sociais. Com isso, inspirou e ajudou muitas outras pessoas a enfrentarem momentos semelhantes com mais coragem.</p>
+<p>Hoje, Lorena Reginato mora em Bauru (SP), cursa a faculdade de Produção Audiovisual desde o ano passado e leva uma vida completamente diferente daquela que tinha quando frequentava os hospitais mensalmente ou, até mesmo, diariamente.</p>
+<p>Sua história é um verdadeiro exemplo de superação, mostrando que é possível vencer as adversidades com determinação e esperança.</p>
+<a href="https://youtu.be/7kuwG6mhX0c" target="_blank" style="display:inline-block; background-color:#a629fa; color:white; padding:10px 20px; margin-top:10px; text-decoration:none; border-radius:6px; font-weight:bold;">🎥 Ver vídeo da história</a>
+</p>
+        `;
+      } else if (tipo === "sintomas") {
+        artigo.innerHTML = `
+          <h1>Sintomas Comuns</h1>
+          <ul>
+            <li>Caroço ou nódulo em alguma parte do corpo</li>
+            <li>Perda de peso inexplicada</li>
+            <li>Fadiga constante</li>
+            <li>Dores persistentes</li>
+            <li>Sangramentos incomuns</li>
+            <li>Alterações na pele ou em verrugas</li>
+          </ul>
+        `;
+      }
+    }
+ 
+ </script>
+</body>
+</html>
+<html>
+<body>
+
+<iframe width="420" height="345" src="https://www.youtube.com/embed/e4MItKfJra8">
+</iframe>
+
+</body>
+</html>

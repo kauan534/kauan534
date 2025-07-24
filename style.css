@@ -1,0 +1,293 @@
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background-color: #e17eff;
+  color: #333;
+}
+
+header {
+  background-color: #dd92ff;
+  padding: 10px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+.chat-btn {
+  background-color: #d694ff;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.intro {
+  text-align: center;
+  padding: 40px 20px;
+  background-color: #bb87ff;
+}
+
+.saiba-mais {
+  background-color: #ffffff;
+  color: #6c559d;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.info-cards, .videos-historias {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 30px 10px;
+  background-color: #e2b6ff;
+}
+
+.card {
+  width: 240px;
+  text-align: center;
+  padding: 10px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.espaco-sensorial {
+  text-align: center;
+  padding: 40px 20px;
+  background-color: #e093ff;
+}
+
+.botoes-sensoriais button {
+  margin: 10px;
+  padding: 10px 20px;
+  border: none;
+  background-color: #d58cff;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.icon {
+  font-size: 2.2rem;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.frases-motivacionais, .beneficios {
+  padding: 40px 20px;
+  background-color: #444444;
+  text-align: center;
+}
+
+.frases-motivacionais h2,
+.beneficios h2 {
+  color: rgb(203, 73, 255);
+  font-size: 2rem;
+  margin-bottom: 25px;
+}
+
+.caixas-frases, .caixas-beneficios {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.caixinha {
+  background-color: white;
+  border: 2px solid rgb(186, 68, 255);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  font-size: 1.1rem;
+  transition: transform 0.3s ease;
+}
+
+.caixinha:hover {
+  transform: scale(1.03);
+  background-color: #f3e6ff;
+}
+
+.caixinha h3 {
+  color: rgb(202, 73, 253);
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+
+.btn-lateral-esquerda,
+.btn-lateral-direita {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 999;
+}
+
+.btn-lateral-esquerda {
+  left: 10px;
+}
+
+.btn-lateral-direita {
+  right: 10px;
+}
+
+.btn-lateral-esquerda button,
+.btn-lateral-direita button {
+  background-color: rgb(249, 240, 255);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 10px 15px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+  transition: background-color 0.3s;
+}
+
+.btn-lateral-esquerda button:hover,
+.btn-lateral-direita button:hover {
+  background-color: #fdfaff;
+}
+
+.fixed-nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  z-index: 1000;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: #f8f0ff;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.menu {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: rgb(253, 249, 255);
+  padding: 10px;
+  border-radius: 8px;
+  gap: 10px;
+}
+
+.menu a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  padding: 5px 10px;
+}
+
+.menu a:hover {
+  color: #800080;
+}
+
+.conteudo {
+  text-align: center;
+}
+
+.conteudo img {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 8px;
+}
+
+.doencas {
+  margin-top: 20px;
+  font-size: 18px;
+  padding: 10px;
+}
+
+.doencas p {
+  margin: 10px 0;
+}
+
+.botoes {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+}
+
+.botoes button {
+  background-color: #5a00a0;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+@media (max-width: 768px) {
+  .info-cards, .videos-historias, .menu, .menu ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card, .caixinha {
+    width: 90% !important;
+  }
+
+  .intro {
+    padding: 20px 10px;
+  }
+
+  .espaco-sensorial, .beneficios, .frases-motivacionais {
+    padding: 20px 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .menu {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .doenca-card, .caixinha, .card {
+    width: 90%;
+  }
+
+  .videos-historias {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .botoes-sensoriais button {
+    width: 100%;
+  }
+
+  #imagem img, #flores img {
+    max-width: 100%;
+  }
+}

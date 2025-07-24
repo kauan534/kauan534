@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cuidados Paliativos</title>
+  <style>
+    /* Reset e base */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9fb;
+      margin: 0;
+      padding: 0;
+      color: #555;
+    }
+
+    header {
+      background-color: #e7defa;
+      padding: 20px;
+      text-align: center;
+    }
+
+    nav ul.menu {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    nav ul.menu li a {
+      text-decoration: none;
+      font-weight: bold;
+      color: #6c559d;
+      font-size: 16px;
+      padding: 5px 10px;
+      transition: color 0.3s;
+    }
+
+    nav ul.menu li a:hover {
+      color: #4b3a75;
+    }
+
+    /* Intro */
+    section.intro {
+      text-align: center;
+      padding: 40px 20px;
+      background-color: #bb87ff;
+      color: white;
+    }
+
+    section.intro img {
+      max-width: 500px;
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    section.intro h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+
+    /* Doenças Acompanhadas */
+    section.doencas {
+      padding: 30px 20px;
+      text-align: center;
+    }
+
+    section.doencas h2 {
+      color: #5a4d9d;
+      font-size: 2rem;
+      margin-bottom: 25px;
+    }
+
+    .doencas-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    a.doenca-card {
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      padding: 20px;
+      width: 220px;
+      text-decoration: none;
+      color: #555;
+      transition: transform 0.3s ease;
+    }
+
+    a.doenca-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .doenca-card .icon {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      display: block;
+      color: #6c559d;
+    }
+
+    .doenca-card p {
+      margin: 0;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    /* Info Cards */
+    section.info-cards {
+      background-color: #e2b6ff;
+      padding: 30px 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .card {
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      width: 220px;
+      padding: 20px;
+      text-align: center;
+      color: #555;
+    }
+
+    .card .icon {
+      font-size: 2.5rem;
+      margin-bottom: 12px;
+      color: #6c559d;
+      display: block;
+    }
+
+    .card h3 {
+      margin: 0 0 10px 0;
+      font-weight: 700;
+      color: #5a4d9d;
+    }
+
+    /* Espaço Sensorial */
+    section.espaco-sensorial {
+      background-color: #e093ff;
+      padding: 40px 20px;
+      text-align: center;
+      color: #3e2f60;
+    }
+
+    section.espaco-sensorial h2 {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+    }
+
+    section.espaco-sensorial p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto 30px auto;
+    }
+
+    .botoes-sensoriais {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+
+    .botoes-sensoriais button {
+      background-color: #dcd6f7;
+      border: none;
+      border-radius: 15px;
+      padding: 15px 30px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      min-width: 150px;
+    }
+
+    .botoes-sensoriais button:hover {
+      background-color: #c3b8f0;
+    }
+
+    #musica {
+      margin-top: 10px;
+      display: none;
+    }
+
+    #imagem, #flores, #texto {
+      display: none;
+      margin: 20px auto 0;
+      max-width: 80%;
+      border-radius: 15px;
+    }
+
+    #imagem img, #flores img {
+      width: 100%;
+      border-radius: 15px;
+    }
+
+    #texto p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #3e2f60;
+      max-width: 700px;
+      margin: auto;
+    }
+
+    /* Vídeos e Histórias */
+    section.videos-historias {
+      background-color: #e2b6ff;
+      padding: 30px 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    section.videos-historias > div {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      padding: 20px;
+      max-width: 420px;
+      flex: 1 1 300px;
+      text-align: center;
+      color: #555;
+    }
+
+    section.videos-historias .icon {
+      font-size: 3rem;
+      margin-bottom: 12px;
+      color: #6c559d;
+      display: block;
+    }
+
+    section.videos-historias h3 {
+      margin-bottom: 15px;
+      font-weight: 700;
+      color: #5a4d9d;
+    }
+
+    section.videos-historias p {
+      font-size: 1rem;
+    }
+
+    section.videos-historias iframe {
+      width: 100%;
+      height: 215px;
+      border-radius: 10px;
+      margin-top: 15px;
+      border: none;
+    }
+
+    /* Benefícios */
+    section.beneficios {
+      padding: 40px 20px;
+      background-color: #444444;
+      color: white;
+      text-align: center;
+    }
+
+    section.beneficios h2 {
+      font-size: 2rem;
+      margin-bottom: 25px;
+      color: rgb(203, 73, 255);
+    }
+
+    .caixas-beneficios {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .caixinha {
+      background-color: white;
+      color: #444444;
+      border: 2px solid rgb(186, 68, 255);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      font-size: 1.1rem;
+      transition: transform 0.3s ease;
+      cursor: default;
+    }
+
+    .caixinha:hover {
+      transform: scale(1.03);
+      background-color: #f3e6ff;
+    }
+
+    .caixinha h3 {
+      color: rgb(202, 73, 253);
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+    }
+
+    /* Responsividade */
+    @media (max-width: 768px) {
+      nav ul.menu {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .doencas-grid,
+      section.info-cards,
+      section.videos-historias,
+      .caixas-beneficios {
+        flex-direction: column;
+        align-items: center;
+        display: flex;
+        gap: 20px;
+      }
+
+      a.doenca-card,
+      .card,
+      section.videos-historias > div,
+      .caixinha {
+        width: 90% !important;
+        max-width: none;
+      }
+
+      section.intro h1 {
+        font-size: 2rem;
+      }
+
+      section.espaco-sensorial h2 {
+        font-size: 2rem;
+      }
+
+      section.espaco-sensorial p,
+      #texto p {
+        font-size: 1rem;
+      }
+
+      section.videos-historias iframe {
+        height: 180px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav>
+      <ul class="menu">
+        <li><a href="#">Início</a></li>
+        <li><a href="#">Sobre Cuidados Paliativos</a></li>
+        <li><a href="#">Dicas de Conforto</a></li>
+        <li><a href="#">Apoio Psicológico</a></li>
+        <li><a href="#">Para Familiares</a></li>
+        <li><a href="#">Espaço Sensorial</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="intro">
+    <img src="img/Sem título.png" alt="Paciente e cuidadora" />
+    <h1>Cuidados Paliativos</h1>
+  </section>
+
+  <section class="doencas">
+    <h2>Doenças Acompanhadas</h2>
+    <div class="doencas-grid">
+      <a href="doenca-cancer.html" class="doenca-card">
+        <span class="icon">🎗️</span>
+        <p>Câncer</p>
+      </a>
+      <a href="doenca-parkinson.html" class="doenca-card">
+        <span class="icon">🧠</span>
+        <p>Parkinson</p>
+      </a>
+      <a href="doenca-esclerose.html" class="doenca-card">
+        <span class="icon">⚡</span>
+        <p>Esclerose Múltipla</p>
+      </a>
+      <a href="doenca-cardiaca.html" class="doenca-card">
+        <span class="icon">❤️</span>
+        <p>Doenças Cardíacas</p>
+      </a>
+    </div>
+  </section>
+
+  <section class="info-cards" style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
+  <a href="sobre-cuidados.html" class="card" style="text-decoration: none; color: inherit;">
+    <span class="icon">💜</span>
+    <h3>Sobre Cuidados Paliativos</h3>
+    <p>Informações sobre este tipo especial de cuidado</p>
+  </a>
+
+  <a href="dicas-conforto.html" class="card" style="text-decoration: none; color: inherit;">
+    <span class="icon">📞</span>
+    <h3>Dicas de Conforto</h3>
+    <p>Cuidados para alívio do bem-estar</p>
+  </a>
+
+  <a href="apoio-psicologico.html" class="card" style="text-decoration: none; color: inherit;">
+    <span class="icon">🧠</span>
+    <h3>Apoio Psicológico</h3>
+    <p>Técnicas de relaxamento e suporte emocional</p>
+  </a>
+
+  <a href="para-familiares.html" class="card" style="text-decoration: none; color: inherit;">
+    <span class="icon">👨‍👩‍👧</span>
+    <h3>Para Familiares</h3>
+    <p>Orientações e apoio para entes queridos</p>
+  </a>
+</section>
+
+  <section class="espaco-sensorial">
+    <h2>Espaço Sensorial</h2>
+    <p>Experiências suaves para o corpo, mente e alma</p>
+
+    <div class="botoes-sensoriais">
+      <button onclick="tocarMusica()">Ouvir sons</button>
+      <button onclick="mostrarImagem()">Ver imagens</button>
+      <button onclick="mostrarFlores()">Sentir aromas</button>
+      <button onclick="mostrarTexto()">Ler ou ouvir textos</button>
+    </div>
+
+    <audio id="musica" src="Sons/videoplayback.mp4" controls></audio>
+
+    <div id="imagem">
+      <img src="https://source.unsplash.com/featured/?nature,relax" alt="" />
+    </div>
+
+    <div id="flores">
+      <img src="/img/purple-flowers-2763959_1280.jpg" alt="/img/purple-flowers-2763959_1280.jpg" />
+    </div>
+
+    <div id="texto">
+      <p>
+      </p>
+    </div>
+  </section>
+
+  <section class="videos-historias">
+    <div>
+      <span class="icon">📹</span>
+      <h3>Vídeos</h3>
+      <p>Assista a vídeos explicativos sobre cuidados paliativos</p>
+      <iframe
+        src="https://www.youtube.com/embed/BI3wgJpeHBY"
+        allowfullscreen
+        title="Vídeo Cuidados Paliativos"
+      ></iframe>
+    </div>
+    <div>
+      <span class="icon">📖</span>
+      <h3>Histórias Reais</h3>
+      A cantora e apresentadora Preta Gil faleceu aos 50 anos devido a complicações do câncer colorretal, diagnosticado em janeiro de 2023, aos 48 anos. Esse tipo de câncer afeta o intestino grosso e o reto, e tem grande impacto na saúde e na qualidade de vida.
+      <p>Depoimentos de pacientes e familiares</p>Preta Gil enfrentou o câncer com coragem e compartilhou sua jornada publicamente, destacando sua fé, esperança e apoio da família. Seu pai, Gilberto Gil, expressou a dor de ver a filha doente, mas também admiração por sua força. Seu filho, Francisco, mostrou orgulho pela forma como a mãe lidou com a doença com dignidade e determinação.
+    </div>
+  </section>
+
+  <section class="beneficios">
+    <h2>Benefícios dos Cuidados Paliativos</h2>
+    <div class="caixas-beneficios">
+      <div class="caixinha">
+        <h3>🎯 Alívio da dor</h3>
+        <p>Uso de medicamentos e técnicas para reduzir dores físicas.</p>
+      </div> 
+      <div class="caixinha">
+        <h3>🧘 Suporte emocional</h3>
+        <p>Ajuda psicológica para lidar com medos e angústias.</p>
+      </div>
+      <div class="caixinha">
+        <h3>👨‍👩‍👧 Apoio à família</h3>
+        <p>Informações e acolhimento para quem cuida do paciente.</p>
+      </div>
+      <div class="caixinha">
+        <h3>🧑‍⚕️ Cuidado humanizado</h3>
+        <p>Tratamento centrado na pessoa, não apenas na doença.</p>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    function tocarMusica() {
+      const audio = document.getElementById("musica");
+      if (audio.style.display === "block") {
+        audio.pause();
+        audio.style.display = "none";
+      } else {
+        audio.style.display = "block";
+        audio.play();
+      }
+    }
+
+    function mostrarImagem() {
+      const div = document.getElementById("imagem");
+      div.style.display = div.style.display === "block" ? "none" : "block";
+    }
+
+    function mostrarFlores() {
+      const div = document.getElementById("flores");
+      div.style.display = div.style.display === "block" ? "none" : "block";
+    }
+
+    function mostrarTexto() {
+      const div = document.getElementById("texto");
+      div.style.display = div.style.display === "block" ? "none" : "block";
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Esclerose Múltipla</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f9f9f9;
+    }
+    header {
+      background-color: #db8fff;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      border-radius: 8px;
+    }
+    main {
+      background: white;
+      padding: 20px;
+      margin-top: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+      min-height: 250px;
+    }
+    nav {
+      margin-top: 20px;
+      text-align: center;
+    }
+    button {
+      background-color: hsl(0, 0%, 0%);
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      margin: 5px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #2d4373;
+    }
+    h1 {
+      margin-top: 0;
+    }
+    ul {
+      padding-left: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Esclerose Múltipla</h1>
+</header>
+
+<nav>
+  <button onclick="mostrarConteudo('historia')">História Real</button>
+  <button onclick="mostrarConteudo('sintomas')">Sintomas Comuns</button>
+</nav>
+
+<main id="conteudo">
+  <h2>História Real: Ludmila Dayer</h2>
+<p>
+  Ludmila Dayer, atriz brasileira, recebeu o diagnóstico de Esclerose Múltipla (EM), uma condição autoimune que afeta o sistema nervoso central. Sua jornada com a doença começou após perceber sintomas que impactavam sua visão, memória e fala.
+</p>
+<p>
+  Acredita-se que o quadro tenha sido desencadeado pelo vírus Epstein-Barr (EBV). Ao tornar pública sua experiência, Ludmila trouxe visibilidade a uma realidade muitas vezes silenciosa, marcada por desafios diários como a fadiga intensa e a perda de autonomia em alguns momentos.
+</p>
+<p>
+  Com coragem e acolhimento, ela encontrou caminhos de cuidado e adaptação, demonstrando a importância do diagnóstico precoce, do apoio familiar e da escuta atenta. Hoje, sua voz inspira outras pessoas a buscarem informação, ajuda e qualidade de vida mesmo diante das adversidades.
+</p>
+
+<script>
+  function mostrarConteudo(tipo) {
+    const conteudo = document.getElementById('conteudo');
+    if (tipo === 'historia') {
+      conteudo.innerHTML = `
+        <h2>História Real: O Caminho da Ana</h2>
+        <p>
+          Ana tinha 29 anos quando começou a sentir fraqueza nas pernas e problemas de visão. Depois de vários exames, recebeu o diagnóstico de Esclerose Múltipla, uma doença autoimune que afeta o sistema nervoso central.
+        </p>
+        <p>
+          Foi um choque, mas Ana decidiu enfrentar o tratamento com determinação. Com o apoio da família e dos médicos, passou a usar medicamentos que ajudaram a controlar os sintomas e evitar crises.
+        </p>
+        <p>
+          Ana também adaptou seu estilo de vida, fazendo fisioterapia e atividades que promovem seu bem-estar. Hoje, ela compartilha sua experiência para conscientizar outras pessoas sobre a importância do diagnóstico precoce.
+        </p>
+      `;
+    } else if (tipo === 'sintomas') {
+      conteudo.innerHTML = `
+        <h2>Sintomas Comuns da Esclerose Múltipla</h2>
+        <ul>
+          <li>Fadiga intensa</li>
+          <li>Fraqueza ou formigamento em membros</li>
+          <li>Dificuldades de coordenação e equilíbrio</li>
+          <li>Problemas de visão, como visão dupla ou embaçada</li>
+          <li>Espasmos musculares e rigidez</li>
+          <li>Dores crônicas</li>
+          <li>Dificuldade para falar ou engolir em casos avançados</li>
+        </ul>
+      `;
+    }
+  }
+</script>
+
+</body>
+</html>
+
+<h1>Sintomas da Esclerose Múltipla (EM)</h1>
+  <ul id="lista-sintomas"></ul>
+
+  <script>
+    const sintomasEM = [
+      "Problemas de visão: visão turva, dupla ou perda parcial da visão.",
+      "Dificuldades de movimento: fraqueza muscular, rigidez, espasmos, dificuldade para andar e perda de coordenação.",
+      "Sintomas sensoriais: dormência, formigamento, dor e sensibilidade ao toque.",
+      "Comprometimento cognitivo: dificuldades de memória, atenção e raciocínio.",
+      "Alterações emocionais: depressão, ansiedade e mudanças de humor.",
+      "Fadiga: cansaço extremo e persistente, muitas vezes incapacitante."
+    ];
+
+    const ul = document.getElementById("lista-sintomas");
+
+    sintomasEM.forEach(sintoma => {
+      const li = document.createElement("li");
+      li.textContent = sintoma;
+      ul.appendChild(li);
+    });
+  </script>
+</body>
+</html>
