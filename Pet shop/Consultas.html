@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mundo dos Focinhos - Agendamento de Consulta</title>
+  <style>
+    /* ===== Estilo Geral ===== */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(to bottom, #f0f8ff, #cce7ff);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      color: #333;
+    }
+    header {
+      background: linear-gradient(90deg, #4CAF50, #81C784);
+      color: white;
+      padding: 30px 20px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      position: relative;
+      overflow: hidden;
+    }
+    header h1 { font-size: 2.2em; margin-bottom: 10px; }
+    header p { font-size: 1.1em; }
+
+    /* ===== Navegação ===== */
+    nav {
+      background: rgba(0,0,0,0.85);
+      padding: 12px;
+      text-align: center;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    nav a:hover { color: #a2fca2; text-decoration: underline; }
+
+    /* ===== Main ===== */
+    main {
+      flex: 1;
+      padding: 30px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 60px;
+    }
+
+    /* ===== Formulário ===== */
+    form {
+      background: white;
+      padding: 35px 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      max-width: 500px;
+      width: 100%;
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    form::before {
+      content: '';
+      background: url('https://images.unsplash.com/photo-1619149830842-b4e89cd39b17?auto=format&fit=crop&w=800&q=80') no-repeat center/cover;
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      opacity: 0.08;
+      z-index: 0;
+    }
+    form * { position: relative; z-index: 1; }
+    form:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(0,0,0,0.25); }
+    form h2 { text-align: center; color: #4CAF50; margin-bottom: 25px; }
+    label { display:block; font-weight:bold; margin-top:15px; }
+    input, select, textarea, button {
+      width:100%;
+      padding:12px;
+      margin-top:5px;
+      border-radius:10px;
+      border:1px solid #ccc;
+      font-size:1em;
+      outline:none;
+      transition:0.3s;
+    }
+    input:focus, select:focus, textarea:focus { border-color:#4CAF50; box-shadow:0 0 8px rgba(76,175,80,0.5);}
+    textarea { resize: vertical; }
+    button {
+      background:#4CAF50;
+      color:white;
+      font-weight:bold;
+      border:none;
+      cursor:pointer;
+      margin-top:20px;
+      transition:0.3s;
+    }
+    button:hover { background:#45a049; transform:scale(1.05); }
+
+    /* ===== Agenda ===== */
+    .agenda {
+      background: white;
+      padding: 25px 20px;
+      border-radius: 20px;
+      box-shadow:0 8px 20px rgba(0,0,0,0.2);
+      max-width: 900px;
+      width: 100%;
+      overflow-x:auto;
+    }
+    .agenda h2 { text-align:center; color:#4CAF50; margin-bottom:20px; }
+    table { width:100%; border-collapse: collapse; }
+    th, td { padding:12px; text-align:center; border-bottom:1px solid #ddd; }
+    th { background:#4CAF50; color:white; }
+    tr:nth-child(even){ background:#f9f9f9; }
+
+    /* ===== Dicas ===== */
+    .dicas {
+      display:flex;
+      flex-wrap:wrap;
+      gap:20px;
+      justify-content:center;
+      max-width:900px;
+    }
+    .card {
+      flex:1 1 250px;
+      background:white;
+      padding:20px;
+      border-radius:15px;
+      box-shadow:0 6px 20px rgba(0,0,0,0.2);
+      text-align:center;
+      transition:0.3s;
+    }
+    .card:hover { transform: translateY(-5px); box-shadow:0 10px 25px rgba(0,0,0,0.25); }
+    .card h3 { color:#4CAF50; margin-bottom:10px; }
+
+    /* ===== Depoimentos ===== */
+    .depoimentos {
+      max-width:900px;
+      width:100%;
+      display:flex;
+      flex-direction:column;
+      gap:20px;
+      align-items:center;
+    }
+    .depoimento-card {
+      background:white;
+      padding:20px;
+      border-radius:15px;
+      box-shadow:0 6px 20px rgba(0,0,0,0.2);
+      text-align:center;
+      max-width:600px;
+    }
+    .depoimento-card p { font-style:italic; margin-bottom:10px; }
+    .depoimento-card h4 { color:#4CAF50; }
+
+    /* ===== Footer ===== */
+    footer { background: rgba(0,0,0,0.85); color:white; text-align:center; padding:20px; }
+
+    /* ===== Botão Topo ===== */
+    .topo {
+      position:fixed;
+      bottom:20px;
+      right:20px;
+      background:#4CAF50;
+      color:white;
+      padding:12px 16px;
+      border-radius:50px;
+      text-decoration:none;
+      font-weight:bold;
+      box-shadow:0 6px 20px rgba(0,0,0,0.3);
+      transition:0.3s;
+    }
+    .topo:hover { transform:scale(1.1); }
+
+    @media(max-width:600px){ nav a{ display:block; margin:8px 0;} .dicas{flex-direction:column;} }
+  </style>
+</head>
+<body id="topo">
+
+  <header>
+    <h1>🐾 Mundo dos Focinhos</h1>
+    <p>Agende a consulta do seu pet com carinho ❤️</p>
+  </header>
+
+  <main>
+    <!-- Formulário de Consulta -->
+    <form action="https://formspree.io/f/SEU_ENDPOINT_AQUI" method="POST">
+      <h2>Agende a consulta do seu pet</h2>
+      <label for="nomeDono">Nome do Dono:</label>
+      <input type="text" id="nomeDono" name="nomeDono" required>
+      <label for="telefone">Telefone:</label>
+      <input type="tel" id="telefone" name="telefone" placeholder="(xx) xxxxx-xxxx" required>
+      <label for="nomePet">Nome do Pet:</label>
+      <input type="text" id="nomePet" name="nomePet" required>
+      <label for="especie">Espécie:</label>
+      <select id="especie" name="especie" required>
+        <option value="">Selecione</option>
+        <option value="cachorro">🐶 Cachorro</option>
+        <option value="gato">🐱 Gato</option>
+        <option value="outro">🐾 Outro</option>
+      </select>
+      <label for="data">Data da Consulta:</label>
+      <input type="date" id="data" name="data" required>
+      <label for="hora">Horário:</label>
+      <input type="time" id="hora" name="hora" required>
+      <label for="observacoes">Observações:</label>
+      <textarea id="observacoes" name="observacoes" rows="4" placeholder="Descreva sintomas ou observações"></textarea>
+      <button type="submit">Agendar Consulta</button>
+    </form>
+
+    <!-- Agenda dos Veterinários -->
+    <div class="agenda">
+      <h2>🗓️ Agenda dos Veterinários</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Veterinário</th>
+            <th>Segunda</th>
+            <th>Terça</th>
+            <th>Quarta</th>
+            <th>Quinta</th>
+            <th>Sexta</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Dr. Carlos 🐶</td><td>09:00-12:00</td><td>14:00-18:00</td><td>09:00-12:00</td><td>14:00-18:00</td><td>09:00-12:00</td></tr>
+          <tr><td>Dra. Marina 🐱</td><td>14:00-18:00</td><td>09:00-12:00</td><td>14:00-18:00</td><td>09:00-12:00</td><td>14:00-18:00</td></tr>
+          <tr><td>Dr. Lucas 🐾</td><td>09:00-12:00</td><td>09:00-12:00</td><td>14:00-18:00</td><td>14:00-18:00</td><td>09:00-12:00</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Dicas de Cuidados -->
+    <div class="dicas">
+      <div class="card"><h3>💧 Hidratação</h3><p>Mantenha sempre água fresca disponível para seu pet.</p></div>
+      <div class="card"><h3>🥩 Alimentação</h3><p>Ofereça dieta balanceada de acordo com idade e porte.</p></div>
+      <div class="card"><h3>💉 Vacinação</h3><p>Mantenha vacinas em dia para prevenção de doenças.</p></div>
+      <div class="card"><h3>🏃 Exercícios</h3><p>Proporcione atividades diárias para saúde física e mental.</p></div>
+    </div>
+
+    <!-- Depoimentos -->
+    <div class="depoimentos">
+      <div class="depoimento-card">
+        <p>"Excelente atendimento! Meu cachorro nunca esteve tão bem."</p>
+        <h4>- Ana S.</h4>
+      </div>
+      <div class="depoimento-card">
+        <p>"A Dra. Marina é incrível! Super cuidadosa com os gatos."</p>
+        <h4>- Lucas M.</h4>
+      </div>
+      <div class="depoimento-card">
+        <p>"Sempre recomendo a clínica.

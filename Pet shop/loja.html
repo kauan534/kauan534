@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pet Shop Online</title>
+<style>
+  body { font-family: Arial, sans-serif; margin:0; padding:0; background:#f9f9f9; }
+  header { background:#4CAF50; color:white; padding:20px; text-align:center; }
+  main { padding:20px; max-width:1000px; margin:auto; }
+  .grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:20px; }
+  .produto, .servico { background:white; padding:15px; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,0.1); text-align:center; }
+  .produto button, .servico button, .botao-contato { padding:10px 15px; background:#4CAF50; color:white; border:none; border-radius:5px; cursor:pointer; transition:0.3s; }
+  .produto button:hover, .servico button:hover, .botao-contato:hover { background:#45a049; transform:scale(1.05); }
+  #carrinho { margin-top:30px; }
+  #carrinho ul { list-style:none; padding:0; }
+  #carrinho li { margin-bottom:10px; }
+  input, select { padding:8px; border-radius:5px; border:1px solid #ccc; width:100%; margin-bottom:10px; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Pet Shop Online 🐶🐱</h1>
+  <p>Adicione produtos ao carrinho e agende serviços</p>
+  <a href="contatos.html" class="botao-contato">📞 Contatos dos Veterinários</a>
+</header>
+
+<main>
+  <!-- Lista de Produtos -->
+  <section>
+    <h2>Produtos 🛒</h2>
+    <div class="grid" id="listaProdutos"></div>
+  </section>
+
+  <!-- Serviços -->
+  <section>
+    <h2>Serviços 🐾</h2>
+    <div class="grid" id="listaServicos">
+      <div class="servico" data-servico="Consulta Geral">
+        <p style="font-size:40px;">🩺</p>
+        <h3>Consulta Geral</h3>
+        <button class="agendarBtn">Agendar</button>
+      </div>
+      <div class="servico" data-servico="Vacinação">
+        <p style="font-size:40px;">💉</p>
+        <h3>Vacinação</h3>
+        <button class="agendarBtn">Agendar</button>
+      </div>
+      <div class="servico" data-servico="Banho & Tosa">
+        <p style="font-size:40px;">🛁✂️</p>
+        <h3>Banho & Tosa</h3>
+        <button class="agendarBtn">Agendar</button>
+      </div>
+      <div class="servico" data-servico="Exames">
+        <p style="font-size:40px;">🔬</p>
+        <h3>Exames</h3>
+        <button class="agendarBtn">Agendar</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Carrinho -->
+  <section id="carrinho">
+    <h2>🛒 Carrinho</h2>
+    <ul id="listaCarrinho"></ul>
+    <p id="totalEl">Subtotal: R$0,00</p>
+    <p id="freteEl">Frete: R$0,00</p>
+    <p id="totalFinalEl">Total Final: R$0,00</p>
+    <h3>📋 Informações do Cliente</h3>
+    <input type="text" id="nome" placeholder="Nome completo" required>
+    <input type="text" id="endereco" placeholder="Endereço de entrega" required>
+    <select id="pagamento">
+      <option value="">Forma de Pagamento</option>
+      <option value="Pix">Pix</option>
+      <option value="Cartão">Cartão</option>
+      <option value="Dinheiro">Dinheiro</option>
+    </select>
+    <input type="text" id="cupom" placeholder="Código do cupom">
+    <button id="aplicarCupom">Aplicar Cupom</button>
+    <button id="confirmar">Confirmar Pedido</button>
+  </section>
+</main>
+
+<script>
+const produtos = [
+  {nome:"Ração para cães 2kg", preco:60},
+  {nome:"Ração para gatos 2kg", preco:55},
+  {nome:"Coleira para cães", preco:25},
+  {nome:"Brinquedo mordedor", preco:15},
+  {nome:"Cama para pets", preco:120},
+  {nome:"Areia sanitária para gatos", preco:40},
+  {nome:"Comedouro automático", preco:90},
+  {nome:"Shampoo Pet", preco:35},
+];
+
+let carrinho = [];
+let descontoPercent = 0;
+
+const listaProdutos = document.getElementById("listaProdutos");
+const listaCarrinho = document.getElementById("listaCarrinho");
+const totalEl = document.getElementById("totalEl");
+const freteEl = document.getElementById("freteEl");
+const totalFinalEl = document.getElementById("totalFinalEl");
+const confirmarBtn = document.getElementById("confirmar");
+
+function renderProdutos() {
+  listaProdutos.innerHTML = "";
+  produtos.forEach((prod, index) => {
+    const div = document.createElement("div");
+    div.classList.add("produto");
+    div.innerHTML = `
+      <h3>${prod.nome}</h3>
+      <p>R$ ${prod.preco.toFixed(2).replace(".", ",")}</p>
+      <button onclick="adicionarCarrinho(${index})">Adicionar ao Carrinho</button>
+    `;
+    listaProdutos.appendChild(div);
+  });
+}
+
+function adicionarCarrinho(index) {
+  const prod = produtos[index];
+  const item = carrinho.find(i => i.nome === prod.nome);
+  if(item) item.qtd++;
+  else carrinho.push({...prod, qtd:1});
+  atualizarCarrinho();
+}
+
+function atualizarCarrinho() {
+  listaCarrinho.innerHTML = "";
+  let total = 0;
+  carrinho.forEach((item, index) => {
+    total += item.preco * item.qtd;
+    const li = document.createElement("li");
+    li.innerHTML = `
+      ${item.nome} - R$ ${(item.preco * item.qtd).toFixed(2).replace(".", ",")}
+      <span>Qtd: ${item.qtd}</span>
+      <button onclick="alterarQtd(${index},-1)">➖</button>
+      <button onclick="alterarQtd(${index},1)">➕</button>
+      <button onclick="removerItem(${index})">❌</button>
+    `;
+    listaCarrinho.appendChild(li);
+  });
+
+  let frete = total > 150 ? 0 : 20;
+  let totalFinal = total + frete;
+  let valorDesconto = totalFinal * (descontoPercent / 100);
+  totalFinal -= valorDesconto;
+
+  totalEl.textContent = "Subtotal: R$ " + total.toFixed(2).replace(".", ",");
+  freteEl.textContent = frete === 0 ? "Frete: Grátis 🚚" : "Frete: R$ " + frete.toFixed(2).replace(".", ",");
+  totalFinalEl.textContent = `Total Final: R$ ${totalFinal.toFixed(2).replace(".", ",")} ${descontoPercent > 0 ? `(Desconto ${descontoPercent}%)` : ""}`;
+}
+
+function alterarQtd(index, delta) {
+  carrinho[index].qtd += delta;
+  if(carrinho[index].qtd <= 0) carrinho.splice(index,1);
+  atualizarCarrinho();
+}
+
+function removerItem(index) {
+  carrinho.splice(index,1);
+  atualizarCarrinho();
+}
+
+// Cupom
+document.getElementById("aplicarCupom").addEventListener("click", () => {
+  const codigo = document.getElementById("cupom").value.trim().toUpperCase();
+  if(codigo==="PET10") descontoPercent = 10;
+  else if(codigo==="PET20") descontoPercent = 20;
+  else descontoPercent=0;
+  atualizarCarrinho();
+});
+
+// Agendamento de serviços
+document.querySelectorAll(".agendarBtn").forEach(btn => {
+  btn.addEventListener("click", (e) => {
+    const servico = e.target.parentElement.getAttribute("data-servico");
+    const data = prompt(`Escolha a data para ${servico} (dd/mm/aaaa):`);
+    if(data) alert(`✅ ${servico} agendado para ${data}!`);
+  });
+});
+
+// Confirmar Pedido
+confirmarBtn.addEventListener("click", () => {
+  const nome = document.getElementById("nome").value;
+  const endereco = document.getElementById("endereco").value;
+  const pagamento = document.getElementById("pagamento").value;
+  
+  if(!nome || !endereco || !pagamento) { 
+    alert("Preencha todos os campos!"); 
+    return; 
+  }
+
+  alert("✅ Pedido confirmado! Bom apetite aos pets 🐶🐱");
+  carrinho=[]; descontoPercent=0;
+  document.getElementById("cupom").value="";
+  renderProdutos();
+  atualizarCarrinho();
+});
+
+renderProdutos();
+atualizarCarrinho();
+</script>
+
+</body>
+</html>
